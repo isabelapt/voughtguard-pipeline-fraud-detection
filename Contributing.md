@@ -1,7 +1,6 @@
 # Guia de Contribuição - VoughtGuard
 
 Bem-vinda ao projeto! Leia este guia com atenção antes de começar.
-
 O fluxo descrito aqui é exatamente o que será avaliado.
 
 ---
@@ -13,7 +12,7 @@ Antes de começar, certifique-se de ter concluído:
 - [ ] **[Trilha 01 - Fundamentos](https://github.com/Starlight-git-project/trilha-01-fundamentos)** - commits, `.gitignore`, variáveis de ambiente
 - [ ] **[Trilha 02 - Governança](https://github.com/Starlight-git-project/trilha-02-governanca)** - branches, PRs, code review
 
-Se ainda não concluiu, comece por lá. O projeto prático assume que você já domina esses conceitos.✨
+Se ainda não concluiu, comece por lá. O projeto prático assume que você já domina esses conceitos.
 
 ---
 
@@ -23,17 +22,37 @@ Cada uma tem issues atribuídas. Veja a sua antes de começar qualquer coisa.
 
 | Issue | Responsável | Semana |
 |-------|------------|--------|
-| #1 — Estrutura do repositório | Aluna A | Semana 1 |
-| #2 — `limpeza.py` | Aluna B | Semana 1 |
-| #3 — `qualidade.py` | Aluna C | Semana 1 |
-| #4 — `transformacao.py` | Aluna A | Semana 2 |
-| #5 — Tabelas analíticas | Aluna B | Semana 2 |
-| #6 — `docs/orquestracao.md` | Aluna C | Semana 2 |
-| #7 — Testes de limpeza | Aluna B | Semana 3 |
-| #8 — Testes de transformação | Aluna C | Semana 3 |
-| #9 — `pipeline.py` final | Aluna A | Semana 3 |
+| #1 - Estrutura do repositório | Aluna A | Semana 1 |
+| #2 - `limpeza.py` | Aluna B | Semana 1 |
+| #3 - `qualidade.py` | Aluna C | Semana 1 |
+| #4 - `transformacao.py` | Aluna A | Semana 2 |
+| #5 - Tabelas analíticas | Aluna B | Semana 2 |
+| #6 - `docs/orquestracao.md` | Aluna C | Semana 2 |
+| #7 - Testes de limpeza | Aluna B | Semana 3 |
+| #8 - Testes de transformação | Aluna C | Semana 3 |
+| #9 - `pipeline.py` final | Aluna A | Semana 3 |
 
-Respeite as dependências, algumas issues só podem começar depois de outras mergeadas.
+🚨 Respeite as dependências. Algumas issues só podem começar depois de outras mergeadas.
+
+---
+
+## Passo 0 - Pegue sua issue
+
+Antes de escrever qualquer linha de código, se atribua à issue:
+
+1. Acesse a aba **Issues** do repositório
+2. Filtre pela sua label - `aluna-a`, `aluna-b` ou `aluna-c`
+
+```
+Issues → Filters → Label → aluna-a (ou b, ou c)
+```
+
+3. Abra a issue da semana atual
+4. No lado direito, clique em **Assignees → assign yourself**
+5. Leia todas as tarefas e critérios de aceite antes de começar
+
+O self-assign avisa o time que você pegou aquela tarefa.
+**Nunca comece a trabalhar sem se atribuir à issue primeiro.**
 
 ---
 
@@ -58,7 +77,7 @@ cd voughtguard-pipeline-fraud-detection
 
 ## Passo 3 - Configure o remote original
 
-Isso permite que você envie suas alterações diretamente para o repositório do projeto. Onde os commits contam para o seu perfil e os badges [Github](https://github.com/drknzz/GitHub-Achievements).
+Isso permite que você envie suas alterações diretamente para o repositório da Starlight - Projeto VoughGuard, onde os commits contam para o seu perfil e os [badges](https://github.com/drknzz/GitHub-Achievements).
 
 ```bash
 git remote add upstream https://github.com/Starlight-git-project/voughtguard-pipeline-fraud-detection.git
@@ -98,7 +117,7 @@ Acesse: [Kaggle — Synthetic Financial Fraud Dataset](https://www.kaggle.com/da
 
 Salve o arquivo em `data/raw/transactions.csv`
 
-`data/raw/` está no `.gitignore` — **nunca commite dados**.
+`data/raw/` está no `.gitignore` - **nunca commite dados**.
 
 ---
 
@@ -165,37 +184,49 @@ git commit -m "."
 
 ---
 
-## Passo 8 - Envie para o repositório original
+## Passo 8 - Verifique antes de enviar
+
+```bash
+# Rode os testes
+pytest tests/ -v
+
+# Verifique o status — nada sensível deve aparecer
+git status
+
+# Revise o que vai subir
+git diff --staged
+```
+
+**Checklist antes do PR:**
+- [ ] Nenhum arquivo `.env` aparece em `git status`
+- [ ] Nenhuma credencial hardcoded no código
+- [ ] `pytest tests/` passa sem erros
+- [ ] Commits com mensagens semânticas
+- [ ] Funções com type hints e docstrings
+
+---
+
+## Passo 9 - Envie para o repositório original
 
 ```bash
 # Envia sua branch direto para o upstream (repo da Starlight)
 git push upstream feature/nome-da-sua-branch
 ```
 
-Seus commits vão direto para o repositório original - aparecem no seu perfil e contam para[ badges](https://github.com/drknzz/GitHub-Achievements). ✅
+Seus commits vão direto para o repositório original - aparecem no seu perfil e contam para [badges](https://github.com/drknzz/GitHub-Achievements). ✅
 
 ---
 
-## Passo 9 - Abra o Pull Request
+## Passo 10 - Abra o Pull Request
 
-No GitHub, acesse o repositório original da Starlight - Voughtguard:
+No GitHub, acesse o repositório original da Starlight:
 
 1. Clique em **Compare & pull request**
 2. **Base:** `develop` ← `feature/nome-da-sua-branch`
 3. Preencha título e descrição usando o template que aparece automaticamente
-4. Em **Development**, clique em **Closes** e adicione o número da sua issue (ex: `Closes #2`)
+4. Em **Development**, clique em **Closes** e adicione o número da sua issue
+   - Exemplo: `Closes #2`
 5. Clique em **Create pull request**
-
----
-
-## Passo 10 - Checklist antes de pedir review
-
-- [ ] Nenhum arquivo `.env` aparece em `git status`
-- [ ] Nenhuma credencial hardcoded no código
-- [ ] `pytest tests/` passa sem erros
-- [ ] Commits com mensagens semânticas
-- [ ] Funções com type hints e docstrings
-- [ ] PR com título semântico e descrição preenchida
 
 ---
 
@@ -226,25 +257,26 @@ Marque a conversa como resolvida **só depois** de implementar ou justificar, nu
 
 ### ⚠️ Aprovação cancelada após novos commits
 
-Se você fizer novos commits **depois de receber uma aprovação**, a aprovação será cancelada automaticamente. Isso é intencional, garante que o revisor sempre vê o código final.
+Se você fizer novos commits **depois de receber uma aprovação**, a aprovação será cancelada automaticamente. Isso é intencional, garante que o revisor sempre vê o código final antes do merge.
 
 Se precisar ajustar algo após a aprovação:
 1. Faça as correções
 2. Commite com mensagem clara: `fix(limpeza): corrigir tipo de retorno conforme review`
 3. Avise o revisor no PR pedindo um novo review
 
-Isso não é punição, é como funciona em times profissionais.🤩
+Isso não é punição, é como funciona em times profissionais.
 
 ---
 
 ## Regras do projeto
 
-1. **Nunca commite na `main` diretamente** - todo código passa por PR
+1. **Nunca commite na `main` diretamente** — todo código passa por PR
 2. **Nunca commite o `.env`** - credenciais ficam fora do repositório
 3. **Nunca commite dados** - `data/` está no `.gitignore`
-4. **Um PR por issue** - não misture responsabilidades
-5. **Resolva todos os comentários antes de pedir merge**
-6. **Sempre envie para o `upstream`** - não para o `origin` - para garantir badges e avaliação
+4. **Se atribua à issue antes de começar** - use o self-assign
+5. **Um PR por issue** - não misture responsabilidades
+6. **Resolva todos os comentários antes de pedir merge**
+7. **Sempre envie para o `upstream`** - garante badges e avaliação
 
 ---
 
